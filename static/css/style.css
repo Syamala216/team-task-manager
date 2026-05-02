@@ -1,0 +1,81 @@
+body {
+    font-family: Arial;
+    background: #f4f6f9;
+    margin: 0;
+}
+
+/* NAVBAR */
+.navbar {
+    background: #2c3e50;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+.container {
+    padding: 20px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* STATS BOX */
+.stats {
+    display: flex;
+    gap: 15px;
+}
+
+.stat-box {
+    background: #3498db;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1;
+    text-align: center;
+}
+
+/* TASK ALIGNMENT */
+.task-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* STATUS COLORS */
+.pending { color: orange; font-weight: bold; }
+.progress { color: blue; font-weight: bold; }
+.done { color: green; font-weight: bold; }
+
+/* BUTTONS */
+.btn {
+    padding: 6px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.btn-start {
+    background: #2980b9;
+}
+
+.btn-done {
+    background: #27ae60;
+}
+
+/* OVERDUE */
+.overdue {
+    color: red;
+    font-weight: bold;
+}

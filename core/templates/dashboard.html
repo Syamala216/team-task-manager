@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Dashboard</h2>
+
+<!-- STATS -->
+<div class="card stats">
+    <div class="stat-box">Total: {{ total }}</div>
+    <div class="stat-box">Completed: {{ completed }}</div>
+    <div class="stat-box">Pending: {{ pending }}</div>
+</div>
+
+<!-- TASK LIST -->
+{% for task in tasks %}
+<div class="card">
+
+    <!-- FLEX LAYOUT -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+
+        <!-- LEFT SIDE -->
+        <div>
+            <h3>{{ task.title }}</h3>
+
+            <p class="status
+                {% if task.status == 'PENDING' %}pending
+                {% elif task.status == 'IN_PROGRESS' %}progress
+                {% else %}done{% endif %}">
+                Status: {{ task.status }}
+            </p>
+
+            {% if task.due_date < today %}
+                <p class="overdue">⚠ Overdue</p>
+            {% endif %}
+        </div>
+
+        <!-- RIGHT SIDE BUTTON -->
+        <div>
+            {% if task.status == "PENDING" %}
+                <a class="btn btn-start"
+                   href="{% url 'update_status' task.id 'IN_PROGRESS' %}">
+                   ▶ Start
+                </a>
+
+            {% elif task.status == "IN_PROGRESS" %}
+                <a class="btn btn-done"
+                   href="{% url 'update_status' task.id 'DONE' %}">
+                   ✔ Done
+                </a>
+            {% endif %}
+        </div>
+
+    </div>
+
+</div>
+{% empty %}
+<div class="card">No tasks assigned</div>
+{% endfor %}
+
+{% endblock %}

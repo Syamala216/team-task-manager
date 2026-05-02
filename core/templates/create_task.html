@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create Task</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <label>Task Title</label>
+    <input type="text" name="title" placeholder="Enter task title" required>
+
+    <label>Description</label>
+    <textarea name="desc" placeholder="Enter description" required></textarea>
+
+    <label>Assign User</label>
+    <select name="user" required>
+        {% for u in users %}
+            <option value="{{ u.id }}">{{ u.username }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Select Workspace</label>
+    <select name="workspace" required>
+        {% for w in workspaces %}
+            <option value="{{ w.id }}">{{ w.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label>Due Date</label>
+    <input type="date" name="date" required>
+
+    <button type="submit">Create Task</button>
+</form>
+
+{% endblock %}
