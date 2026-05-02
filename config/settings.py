@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-CHANGE-THIS-IN-PRODUCTION'
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # APPLICATIONS
@@ -40,15 +40,15 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'config.urls'
 
 
-# TEMPLATES (UPDATED)
+# TEMPLATES
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
 
-        # Supports global templates folder (optional but professional)
+        # global templates folder
         'DIRS': [BASE_DIR / 'templates'],
 
-        # Automatically loads core/templates/
+        # app templates
         'APP_DIRS': True,
 
         'OPTIONS': {
@@ -66,7 +66,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# DATABASE
+# DATABASE (SQLite for now)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -77,18 +77,10 @@ DATABASES = {
 
 # PASSWORD VALIDATION
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 
@@ -100,24 +92,30 @@ USE_I18N = True
 USE_TZ = True
 
 
+# =========================
+# STATIC FILES (IMPORTANT)
+# =========================
 
-
-
-# DEFAULT PRIMARY KEY
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# CUSTOM USER MODEL
-AUTH_USER_MODEL = 'core.User'
-
-
-# AUTH REDIRECTS
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
-LOGIN_URL = '/login/'
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+
+# =========================
+# DEFAULT PRIMARY KEY
+# =========================
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# =========================
+# AUTH SYSTEM
+# =========================
+AUTH_USER_MODEL = 'core.User'
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/login/'
