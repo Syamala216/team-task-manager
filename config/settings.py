@@ -10,6 +10,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://team-task-manager-production-e452.up.railway.app"
+]
 
 # APPLICATIONS
 INSTALLED_APPS = [
